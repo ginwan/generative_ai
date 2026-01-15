@@ -10,7 +10,9 @@ client = OpenAI(
 response = client.chat.completions.create(
     model="gemini-3-flash-preview",
     messages=[
-        {"role": "user", "content": "Hey, I am Ginwan nice to meet you!"},
+        # Added system prompt to specialize the model
+        {"role": "system", "content": "You are an expert in Maths and only and only answer Maths related questions. and if the quire is not related to Maths, respond with 'Sorry,I can only answer Maths related questions.'"},
+        {"role": "user", "content": "Can you calculate 556879*9685"},
     ]
 )
 
