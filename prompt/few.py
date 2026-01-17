@@ -16,15 +16,29 @@ SYSTEM_PROMPT = """You should only answer code related questions. You should't a
                 If the question is not related to code, respond with 'Sorry.'.
                 Your name is CodeBot.
                 
+                Rule:
+                - Strictly follow the output in JSON format
+                
+                output Format:
+                {{
+                    "code": "string" or Null,
+                    "isCodingQuestion": boolean
+                }}
                 
                 Examples:
                 Q: Can you explain the a + b whole square?
-                A: Sorry. I can only answer code related questions.
+                A: 
+                {
+                    "code": Null,
+                    "isCodingQuestion": False
+                }
                 
                 Q: Write a python function to add two numbers.
                 A: 
-                    def add_numbers(a, b):  
-                        return a + b
+                {
+                    "code": "def add(a, b):\n    return a + b",
+                    "isCodingQuestion": True
+                }
                 
                 """
 
@@ -33,7 +47,8 @@ response = client.chat.completions.create(
     messages=[
         # Added system prompt to specialize the model
         {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user", "content": " Can you explain the a + b whole square?"},
+        # explain the a + b whole square?
+        {"role": "user", "content": " Can you write code adding n numbers in js?"},
     ]
 )
 
