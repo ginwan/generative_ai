@@ -28,6 +28,14 @@ config = {
             "model": "gpt-4.1",
         }
     },
+    "graph_store": {
+        "provider": "neo4j",
+        "config": {
+            "url": "neo4j+s://83794e68.databases.neo4j.io",
+            "username": "neo4j",
+            "password": "Zft2fUpW31w5CPua-Lk441EIWev09V6pEbF0Ty-2xk0"
+        }
+    },
     "vector_store": {
         "provider": "qdrant",
         "config": {
